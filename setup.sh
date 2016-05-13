@@ -12,7 +12,7 @@ apk add rsync
 addgroup -g 1000 rsync && adduser -H -D -G rsync -s /bin/false -u 1000 rsync
 
 # create the rsync dir and volume mount points
-mkdir /rsync
+mkdir /rsync && mkdir /config
 
 # check if config exists in /config. If it doesn't, copy the default on from the install dir.
 if [ ! -f /config/rsyncd.conf ]; then
