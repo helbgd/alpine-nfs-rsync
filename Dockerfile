@@ -4,10 +4,10 @@ LABEL Description="alpine with nfs and rsync server" Version="0.1"
 
 # copy init files
 RUN mkdir /setup
-COPY setup/* /setup/
+COPY setup.sh /setup/
 
 # make the escripts executable and run the setup
-RUN chmod -v +x /setup/*.sh && sh /setup/setup.sh
+RUN chmod -v +x /setup/setup.sh && sh /setup/setup.sh
 
 # delete all the setup files
 RUN rm -r /setup/
