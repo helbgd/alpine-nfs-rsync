@@ -1,9 +1,9 @@
 FROM alpine:latest
 MAINTAINER Helmuth Angerer <helmut.angerer@googlemail.com>
-LABEL Description="alpine with nfs and rsync server" Version="0.1"
+LABEL Description="alpine with rsync server" Version="0.1"
 
 # copy init files
-RUN mkdir /setup
+RUN mkdir /setup && 
 COPY setup.sh /setup/
 
 # make the escripts executable and run the setup
@@ -13,13 +13,13 @@ RUN chmod -v +x /setup/setup.sh && sh /setup/setup.sh
 RUN rm -r /setup/
 
 # volume mappings
-VOLUME /export
+VOLUME /rsync /config
 
 # exposes nzbget's default port
 EXPOSE 
 
 # not root anymore going forward
-USER nfs
+USER rsync
 
 # set some defaults and start nzbget in server and log mode
-ENTRYPOINT ["/nfsd", "-s", "-o", "OutputMode=log", "-c", " "]
+ENTRYPOINT ["/usr/bin/rsyncd", "--daemon",  "--config=", "/config/rsync.conf "]
