@@ -3,7 +3,7 @@ MAINTAINER Helmuth Angerer <helmut.angerer@googlemail.com>
 LABEL Description="alpine with rsync server" Version="0.1"
 
 # copy init files
-RUN mkdir /setup && 
+RUN mkdir /setup 
 COPY setup.sh /setup/
 
 # make the escripts executable and run the setup
