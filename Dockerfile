@@ -19,7 +19,7 @@ VOLUME /rsync /config
 EXPOSE 873
 
 # not root anymore going forward
-USER rsync
+USER root
 
 # set some defaults and start nzbget in server and log mode
 ENTRYPOINT ["/usr/bin/rsyncd", "--daemon",  "--config=", "/config/rsync.conf "]
