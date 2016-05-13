@@ -16,7 +16,7 @@ RUN rm -r /setup/
 VOLUME /rsync /config
 
 # exposes nzbget's default port
-EXPOSE 
+EXPOSE 873
 
 # not root anymore going forward
 USER rsync
