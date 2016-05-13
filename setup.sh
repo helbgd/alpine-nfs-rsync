@@ -12,8 +12,13 @@ apk add rsync
 addgroup -g 1000 rsync && adduser -H -D -G rsync -s /bin/false -u 1000 rsync
 
 # create the rsync dir and volume mount points
-mkdir /export
+mkdir /rsync
 
+# check if config exists in /config. If it doesn't, copy the default on from the install dir.
+if [ ! -f /config/rsyncd.conf ]; then
+  echo "No config found, copying the default config now."
+  cp -v /etc/rsyncd.conf /config/rsyncd.conf
+fi
 
 # we don't need GNU wget anymore (busybox' wget will still be available).
 #apk del wget
